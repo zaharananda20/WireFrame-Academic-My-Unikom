@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe My Academic UNIKOM</title>
+
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --panel: #ffffff;
+      --line: #9ca3af;
+      --line-soft: #d1d5db;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --danger: #dc2626;
+      --font-size: 15px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #111827;
+      --panel: #1f2937;
+      --line: #6b7280;
+      --line-soft: #374151;
+      --text: #f9fafb;
+      --muted: #d1d5db;
+      --accent-soft: #1e3a8a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: var(--font-size);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .wire-box {
+      border: 2px dashed var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+    }
+
+    .wire-solid {
+      border: 1px solid var(--line-soft);
+      background: var(--panel);
+      border-radius: 12px;
+    }
+
+    .sidebar {
+      width: 280px;
+      min-height: 100vh;
+      padding: 18px;
+      border-right: 2px solid var(--line);
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+    }
+
+    .brand {
+      height: 76px;
+      border: 2px dashed var(--line);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      margin-bottom: 18px;
+    }
+
+    .logo-placeholder {
+      width: 44px;
+      height: 44px;
+      border: 2px dashed var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+    }
+
+    .brand p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .menu-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: bold;
+      margin: 20px 0 8px;
+      letter-spacing: .05em;
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-height: 42px;
+      margin-bottom: 8px;
+      border: 1px solid var(--line-soft);
+      background: transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-btn:hover,
+    .menu-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .submenu {
+      display: none;
+      margin-left: 14px;
+      padding-left: 10px;
+      border-left: 2px dashed var(--line-soft);
+    }
+
+    .submenu.show {
+      display: block;
+    }
+
+    .tag {
+      font-size: 11px;
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      padding: 3px 7px;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .topbar {
+      min-height: 78px;
+      padding: 16px 24px;
+      border-bottom: 2px solid var(--line);
+      background: var(--panel);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .search-area {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 46px;
+      border: 2px dashed var(--line);
+      border-radius: 999px;
+      padding: 0 18px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .search-result {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 54px;
+      background: var(--panel);
+      border: 2px dashed var(--line);
+      border-radius: 12px;
+      padding: 8px;
+      z-index: 50;
+    }
+
+    .search-result button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 11px;
+      text-align: left;
+      border-radius: 8px;
+    }
+
+    .search-result button:hover {
+      background: var(--accent-soft);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .icon-btn,
+    .primary-btn,
+    .secondary-btn {
+      min-height: 42px;
+      border-radius: 10px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .icon-btn {
+      width: 44px;
+      padding: 0;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .secondary-btn {
+      background: transparent;
+    }
+
+    .student-card {
+      border: 2px dashed var(--line);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 13px;
+      min-width: 210px;
+    }
+
+    .content {
+      padding: 24px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      margin-bottom: 16px;
+    }
+
+    .page-title h2 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .page-title p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .annotation {
+      border: 2px dashed var(--accent);
+      background: var(--accent-soft);
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .summary-card {
+      min-height: 140px;
+      padding: 16px;
+      border: 2px dashed var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+
+    .summary-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .placeholder-icon {
+      width: 42px;
+      height: 42px;
+      border: 2px dashed var(--line);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: grid;
+      place-items: center;
+    }
+
+    .summary-card .label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .value {
+      font-size: 23px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .progress-line {
+      height: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 70%;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .banner {
+      border: 2px dashed var(--warning);
+      background: rgba(245, 158, 11, .14);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel {
+      padding: 18px;
+      border: 2px dashed var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+
+    .panel h3 {
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .privacy-card {
+      min-height: 120px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .privacy-value {
+      font-weight: bold;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .step.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .step.done {
+      border-color: var(--success);
+      background: rgba(22, 163, 74, .13);
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border: 2px dashed var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 8px;
+      background: var(--panel);
+    }
+
+    .table-tools {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .filter-input,
+    select {
+      border: 2px dashed var(--line);
+      border-radius: 10px;
+      min-height: 42px;
+      padding: 0 12px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 2px dashed var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line-soft);
+      padding: 12px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: bold;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid var(--line-soft);
+    }
+
+    .badge.ok {
+      background: rgba(22, 163, 74, .13);
+      color: var(--success);
+    }
+
+    .badge.warn {
+      background: rgba(245, 158, 11, .15);
+      color: var(--warning);
+    }
+
+    .badge.danger {
+      background: rgba(220, 38, 38, .13);
+      color: var(--danger);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick-card {
+      min-height: 84px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      background: transparent;
+      padding: 12px;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .quick-card:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .access-card {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 110px;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 12px;
+      border: 2px dashed var(--success);
+      background: rgba(22, 163, 74, .12);
+      border-radius: 10px;
+      padding: 12px;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      margin-top: 12px;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+
+    .chat-wrapper {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .chat-panel {
+      display: none;
+      width: 350px;
+      height: 420px;
+      background: var(--panel);
+      border: 2px dashed var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .chat-panel.open {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      padding: 14px;
+      border-bottom: 2px dashed var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      background: var(--accent-soft);
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed var(--line);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .msg.bot {
+      align-self: flex-start;
+      background: var(--bg);
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 2px dashed var(--line);
+    }
+
+    .chat-form input {
+      flex: 1;
+      border: 2px dashed var(--line);
+      border-radius: 10px;
+      padding: 0 10px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .chat-trigger {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: 0;
+      font-size: 24px;
+    }
+
+    .modal-overlay,
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 120;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal {
+      width: min(540px, 100%);
+      background: var(--panel);
+      border: 2px dashed var(--line);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .modal h3 {
+      margin-bottom: 10px;
+    }
+
+    .modal p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .spinner {
+      width: 54px;
+      height: 54px;
+      border: 5px solid rgba(255,255,255,.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      color: white;
+      font-weight: bold;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .toast {
+      display: none;
+      position: fixed;
+      right: 22px;
+      bottom: 100px;
+      z-index: 140;
+      background: #111827;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 12px;
+      max-width: 380px;
+      font-weight: bold;
+    }
+
+    .wireframe-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      border-top: 1px dashed var(--line-soft);
+      padding-top: 8px;
+    }
+
+    @media (max-width: 1000px) {
+      body {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: static;
+      }
+
+      .dashboard-grid,
+      .main-layout,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .access-grid,
+      .privacy-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 16px;
+      }
+
+      .access-grid,
+      .privacy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-panel {
+        width: calc(100vw - 32px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- SIDEBAR WIREFRAME -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-placeholder">LOGO</div>
+      <div>
+        <h1>My Academic UNIKOM</h1>
+        <p>Wireframe Interaktif</p>
+      </div>
+    </div>
+
+    <div class="menu-title">Utama</div>
+    <button class="menu-btn active" id="btn-dashboard" onclick="openPage('dashboard')">
+      Dashboard <span>›</span>
+    </button>
+
+    <div class="menu-title">Layanan Mahasiswa</div>
+
+    <button class="menu-btn" onclick="toggleSubmenu('submenu-krs')">
+      KRS & Perwalian <span class="tag">AI</span>
+    </button>
+    <div class="submenu show" id="submenu-krs">
+      <button class="menu-btn" id="btn-krs" onclick="openPage('krs')">KRS Semester</button>
+      <button class="menu-btn" id="btn-wali" onclick="openPage('wali')">Dosen Wali</button>
+    </div>
+
+    <button class="menu-btn" onclick="toggleSubmenu('submenu-akademik')">
+      Informasi Akademik <span>▾</span>
+    </button>
+    <div class="submenu" id="submenu-akademik">
+      <button class="menu-btn" id="btn-jadwal" onclick="openPage('jadwal')">Jadwal Kuliah</button>
+      <button class="menu-btn" id="btn-nilai" onclick="openPage('nilai')">Riwayat Nilai & IPK</button>
+    </div>
+
+    <button class="menu-btn" onclick="toggleSubmenu('submenu-keuangan')">
+      Layanan Keuangan <span>▾</span>
+    </button>
+    <div class="submenu" id="submenu-keuangan">
+      <button class="menu-btn" id="btn-tagihan" onclick="openPage('tagihan')">Tagihan Perkuliahan</button>
+    </div>
+
+    <div class="menu-title">Menu My Academic Asli</div>
+    <button class="menu-btn" id="btn-profile" onclick="openPage('profile')">Profile</button>
+    <button class="menu-btn" id="btn-kurikulum" onclick="openPage('kurikulum')">Kurikulum</button>
+    <button class="menu-btn" id="btn-rencana" onclick="openPage('rencana')">Pengisian Rencana Studi</button>
+    <button class="menu-btn" id="btn-kelas" onclick="openPage('kelas')">Pengisian Kelas</button>
+    <button class="menu-btn" id="btn-kehadiran" onclick="openPage('kehadiran')">Kehadiran Perkuliahan</button>
+    <button class="menu-btn" id="btn-kuesioner" onclick="openPage('kuesioner')">Kuesioner</button>
+    <button class="menu-btn" id="btn-wisuda" onclick="openPage('wisuda')">Syarat Wisuda</button>
+    <button class="menu-btn" id="btn-aktivitas" onclick="openPage('aktivitas')">Aktivitas Kemahasiswaan</button>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="main">
+    <header class="topbar">
+      <div class="search-area">
+        <input
+          id="search"
+          class="search"
+          placeholder="Search bar global: cari KRS, jadwal, nilai, tagihan, kuesioner..."
+          oninput="handleSearch()"
+          onkeydown="handleSearchEnter(event)"
+        />
+        <div class="search-result" id="search-result"></div>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" onclick="changeFont('inc')" title="Perbesar font">A+</button>
+        <button class="icon-btn" onclick="changeFont('dec')" title="Perkecil font">A-</button>
+        <button class="icon-btn" onclick="toggleTheme()" title="Dark mode">◐</button>
+        <button class="icon-btn" onclick="toggleAllSensitive()" title="Sensor data">👁</button>
+
+        <div class="student-card">
+          <strong>Zahara Nanda Alvianti</strong><br />
+          <span>10123325 | Teknik Informatika-S1</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="page-title">
+        <h2 id="page-heading">Wireframe Dashboard My Academic</h2>
+        <p id="page-desc">
+          Struktur low-fidelity untuk menggambarkan alur sistem, navigasi, komponen, dan interaksi utama.
+        </p>
+      </div>
+
+      <!-- DASHBOARD CARDS -->
+      <section class="dashboard-grid" id="dashboard-cards">
+        <button class="summary-card" onclick="openPage('rencana')">
+          <div class="placeholder-icon">□</div>
+          <div class="label">Status Rencana Studi</div>
+          <div class="value">Menunggu</div>
+          <div class="desc">Klik untuk membuka rencana studi.</div>
+          <div class="progress-line"><div class="progress-fill"></div></div>
+        </button>
+
+        <button class="summary-card" onclick="openPage('jadwal')">
+          <div class="placeholder-icon">□</div>
+          <div class="label">Jadwal Hari Ini</div>
+          <div class="value">2 Kuliah</div>
+          <div class="desc">Lihat jadwal semester aktif.</div>
+          <div class="progress-line"><div class="progress-fill" style="width:45%"></div></div>
+        </button>
+
+        <button class="summary-card" onclick="openPage('kehadiran')">
+          <div class="placeholder-icon">□</div>
+          <div class="label">Kehadiran</div>
+          <div class="value">92%</div>
+          <div class="desc">Presensi masih dalam status aman.</div>
+          <div class="progress-line"><div class="progress-fill" style="width:92%"></div></div>
+        </button>
+
+        <button class="summary-card" onclick="openPage('kuesioner')">
+          <div class="placeholder-icon">□</div>
+          <div class="label">Kuesioner</div>
+          <div class="value">2 Belum</div>
+          <div class="desc">Evaluasi perkuliahan perlu dilengkapi.</div>
+          <div class="progress-line"><div class="progress-fill" style="width:50%"></div></div>
+        </button>
+      </section>
+
+      <div class="banner" id="info-banner">
+        ⚠️ Feedback informatif: batas akhir pengisian KRS ditampilkan sebagai peringatan jelas.
+      </div>
+
+      <!-- MAIN WIREFRAME CONTENT -->
+      <section class="main-layout">
+        <div class="panel">
+          <h3>Privasi Data Sensitif</h3>
+
+          <div class="privacy-grid">
+            <div class="privacy-card">
+              <div class="placeholder-icon" style="margin:0 auto 8px;">□</div>
+              <p>Nomor Induk Mahasiswa</p>
+              <div class="privacy-value sensitive" data-value="10123325">•••••••</div>
+              <button class="secondary-btn" onclick="toggleOneSensitive(this)">Lihat</button>
+            </div>
+
+            <div class="privacy-card">
+              <div class="placeholder-icon" style="margin:0 auto 8px;">□</div>
+              <p>Kartu Rencana Studi</p>
+              <div class="privacy-value sensitive" data-value="20 SKS">•••••••</div>
+              <button class="secondary-btn" onclick="toggleOneSensitive(this)">Lihat</button>
+            </div>
+
+            <div class="privacy-card">
+              <div class="placeholder-icon" style="margin:0 auto 8px;">□</div>
+              <p>Tagihan</p>
+              <div class="privacy-value sensitive" data-value="Rp 8.500.000">•••••••</div>
+              <button class="secondary-btn" onclick="toggleOneSensitive(this)">Lihat</button>
+            </div>
+          </div>
+
+          <p class="wireframe-label">
+            Data sensitif disembunyikan secara default dan dapat dikontrol oleh pengguna.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>KRS Step-by-Step Preview</h3>
+
+          <div class="stepper" id="stepper">
+            <div class="step done" id="step-1">
+              <div class="step-circle">1</div>
+              Pilih
+            </div>
+            <div class="step active" id="step-2">
+              <div class="step-circle">2</div>
+              Validasi
+            </div>
+            <div class="step" id="step-3">
+              <div class="step-circle">3</div>
+              Konfirmasi
+            </div>
+            <div class="step" id="step-4">
+              <div class="step-circle">4</div>
+              Selesai
+            </div>
+          </div>
+
+          <button class="primary-btn" onclick="openPage('krs')">Lanjutkan KRS</button>
+
+          <p class="wireframe-label">
+            Alur KRS dibuat bertahap untuk mengurangi kebingungan mahasiswa baru.
+          </p>
+        </div>
+      </section>
+
+      <!-- DYNAMIC TABLE -->
+      <section class="panel">
+        <h3 id="section-title">Alur Pengisian KRS Online</h3>
+
+        <div class="table-tools">
+          <strong id="table-caption">Mata Kuliah Pilihan Semester Ini</strong>
+          <input
+            id="table-filter"
+            class="filter-input"
+            placeholder="Filter isi tabel..."
+            oninput="filterTable()"
+          />
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr id="table-head"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+
+        <p class="footer-note" id="table-note"></p>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="primary-btn" id="main-action" onclick="processAction()">Simpan Data</button>
+          <button class="secondary-btn" onclick="openModal('Bantuan Kontekstual', 'Bantuan ini muncul tanpa membuat pengguna keluar dari halaman kerja.')">
+            Bantuan
+          </button>
+        </div>
+      </section>
+
+      <!-- SOCIAL MATCHER + ACCESSIBILITY -->
+      <section class="two-column">
+        <div class="panel">
+          <h3>Smart Social Schedule Matcher</h3>
+          <p class="footer-note">
+            Fitur untuk mencari waktu kosong bersama teman tanpa menampilkan detail jadwal pribadi.
+          </p>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <input class="filter-input" id="friend-nim" placeholder="Masukkan NIM teman" />
+            <button class="primary-btn" onclick="matchSchedule()">Deteksi Waktu Luang</button>
+          </div>
+
+          <div class="result-box" id="match-result"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Accessibility Panel</h3>
+
+          <div class="access-grid">
+            <div class="access-card">
+              <strong>Ukuran Teks</strong><br /><br />
+              <button class="secondary-btn" onclick="changeFont('dec')">A-</button>
+              <button class="secondary-btn" onclick="changeFont('inc')">A+</button>
+            </div>
+
+            <div class="access-card">
+              <strong>Mode Tampilan</strong><br /><br />
+              <button class="secondary-btn" onclick="toggleTheme()">Dark/Light</button>
+            </div>
+
+            <div class="access-card">
+              <strong>Privasi</strong><br /><br />
+              <button class="secondary-btn" onclick="toggleAllSensitive()">Sensor Data</button>
+            </div>
+
+            <div class="access-card">
+              <strong>Keyboard</strong>
+              <p class="footer-note">Gunakan Tab, Enter, dan Esc.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- CHATBOT -->
+    <div class="chat-wrapper">
+      <div class="chat-panel" id="chat-panel">
+        <div class="chat-header">
+          <span>Unikom-Bot</span>
+          <button class="secondary-btn" onclick="toggleChat()">—</button>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+          <div class="msg bot">
+            Halo! Saya Unikom-Bot. Tanyakan KRS, jadwal, nilai, tagihan, kuesioner, wisuda, atau kehadiran.
+          </div>
+        </div>
+
+        <div class="chat-form">
+          <input id="chat-input" placeholder="Ketik pesan..." onkeydown="if(event.key==='Enter') sendChat()" />
+          <button class="primary-btn" onclick="sendChat()">➜</button>
+        </div>
+      </div>
+
+      <button class="chat-trigger" onclick="toggleChat()">💬</button>
+    </div>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <h3 id="modal-title">Judul Modal</h3>
+      <p id="modal-desc">Deskripsi modal</p>
+      <div class="modal-actions">
+        <button class="primary-btn" onclick="closeModal()">Mengerti</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p id="loading-text">Memproses data...</p>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let currentFont = 15;
+    let currentPage = "dashboard";
+
+    const pages = [
+      ["dashboard", "Dashboard"],
+      ["krs", "KRS Semester"],
+      ["wali", "Dosen Wali"],
+      ["jadwal", "Jadwal Kuliah"],
+      ["nilai", "Riwayat Nilai & IPK"],
+      ["tagihan", "Tagihan Perkuliahan"],
+      ["profile", "Profile"],
+      ["kurikulum", "Kurikulum"],
+      ["rencana", "Pengisian Rencana Studi"],
+      ["kelas", "Pengisian Kelas"],
+      ["kehadiran", "Kehadiran Perkuliahan"],
+      ["kuesioner", "Kuesioner"],
+      ["wisuda", "Syarat Wisuda"],
+      ["aktivitas", "Aktivitas Kemahasiswaan"]
+    ];
+
+    const tableData = {
+      dashboard: {
+        heading: "Wireframe Dashboard My Academic",
+        desc: "Dashboard modular menampilkan ringkasan akademik, shortcut penting, status KRS, dan akses cepat.",
+        title: "Alur Pengisian KRS Online",
+        caption: "Mata Kuliah Pilihan Semester Ini",
+        action: "Simpan Kelas KRS",
+        head: ["Kode", "Mata Kuliah", "SKS", "Kelas", "Status"],
+        rows: [
+          ["IF-DIPL2", "Desain Interaksi Perangkat Lunak", "3", "DIPL 2", "<span class='badge ok'>Aman</span>"],
+          ["IF-RF1", "Rekayasa Fitur", "3", "RF 1", "<span class='badge ok'>Aman</span>"]
+        ],
+        note: "Wireframe ini menunjukkan tabel dinamis yang dapat berubah sesuai menu yang dipilih."
+      },
+
+      krs: {
+        heading: "Wireframe KRS Step-by-Step",
+        desc: "Pengisian KRS dibuat bertahap: pilih mata kuliah, validasi kelas, cek bentrok, lalu konfirmasi.",
+        title: "KRS Wizard",
+        caption: "Daftar Mata Kuliah yang Dapat Dipilih",
+        action: "Simpan & Lanjut",
+        head: ["Pilih", "Kode", "Mata Kuliah", "SKS", "Kuota", "Validasi"],
+        rows: [
+          ["<input type='checkbox' checked>", "IF204", "Basis Data", "3", "22/40", "<span class='badge ok'>Valid</span>"],
+          ["<input type='checkbox' checked>", "IF205", "Algoritma & Pemrograman", "3", "18/40", "<span class='badge ok'>Valid</span>"],
+          ["<input type='checkbox'>", "IF206", "Matematika Diskrit", "3", "30/40", "<span class='badge ok'>Valid</span>"],
+          ["<input type='checkbox'>", "IF207", "Struktur Data", "3", "0/40", "<span class='badge danger'>Penuh</span>"]
+        ],
+        note: "Sistem memberi validasi prasyarat, SKS, kuota, dan jadwal bentrok sebelum disimpan."
+      },
+
+      wali: {
+        heading: "Wireframe Dosen Wali",
+        desc: "Halaman ini menampilkan catatan konsultasi dan status persetujuan dosen wali.",
+        title: "Lembar Kendali Perwalian",
+        caption: "Status Persetujuan Mata Kuliah",
+        action: "Hubungi Dosen Wali",
+        head: ["Mata Kuliah", "SKS", "Dosen Pengampu", "Rekomendasi", "Status"],
+        rows: [
+          ["DIPL", "3", "Alif Finandhita, S.Kom, M.T", "Sesuai peminatan UI/UX", "<span class='badge ok'>Approved</span>"],
+          ["Komputasi Awan", "3", "Dosen Pengampu", "Wajib semester ini", "<span class='badge ok'>Approved</span>"]
+        ],
+        note: "Bantuan kontak dosen wali dibuat lebih mudah diakses."
+      },
+
+      jadwal: {
+        heading: "Wireframe Jadwal Kuliah",
+        desc: "Jadwal dibuat dalam tabel yang dapat difilter dan lebih mudah dipindai.",
+        title: "Jadwal Kuliah Aktif",
+        caption: "Daftar Hari dan Jam Kelas",
+        action: "Bagikan Jadwal",
+        head: ["Hari", "Waktu", "Mata Kuliah", "Kelas", "Ruang", "Status"],
+        rows: [
+          ["Senin", "08.00 - 09.40", "Basis Data", "IF-2A", "D.203", "<span class='badge ok'>Selesai</span>"],
+          ["Rabu", "10.00 - 11.40", "DIPL", "IF-2A", "Lab 2", "<span class='badge warn'>Berlangsung</span>"],
+          ["Jumat", "13.00 - 14.40", "Keamanan Big Data", "IF-2A", "D.503", "<span class='badge'>Akan Datang</span>"]
+        ],
+        note: "Filter tabel membantu mahasiswa menemukan jadwal tanpa membuka banyak menu."
+      },
+
+      nilai: {
+        heading: "Wireframe Riwayat Nilai & IPK",
+        desc: "Riwayat nilai dan IPK ditampilkan dalam tabel ringkas dengan opsi sensor data.",
+        title: "Riwayat Nilai & IPK",
+        caption: "Kinerja Akademik Mahasiswa",
+        action: "Cetak Transkrip",
+        head: ["Semester", "SKS", "Mata Kuliah", "IPS", "A", "B", "C", "D/E"],
+        rows: [
+          ["20231", "19", "8", "3.78", "7", "1", "0", "0"],
+          ["20232", "18", "6", "3.65", "5", "1", "0", "0"],
+          ["20241", "19", "7", "3.85", "6", "1", "0", "0"]
+        ],
+        note: "Data akademik sensitif dapat disembunyikan saat dibuka di tempat umum."
+      },
+
+      tagihan: {
+        heading: "Wireframe Tagihan Perkuliahan",
+        desc: "Pembayaran dibuat lebih jelas dengan ringkasan tagihan dan simulasi virtual account.",
+        title: "Tagihan Perkuliahan",
+        caption: "Rincian Biaya Semester Aktif",
+        action: "Bayar Sekarang",
+        head: ["Semester", "Komponen", "Total", "Status", "Aksi"],
+        rows: [
+          ["20252", "BPS + Kuliah Pokok", "Rp 8.500.000", "<span class='badge warn'>Belum Dibayar</span>", "<button class='primary-btn' onclick='openPaymentModal()'>Buat VA</button>"]
+        ],
+        note: "Informasi keuangan dapat disensor melalui fitur privasi."
+      },
+
+      profile: {
+        heading: "Wireframe Profile Mahasiswa",
+        desc: "Profil menampilkan informasi akademik, kontak, dan status akun.",
+        title: "Profile Mahasiswa",
+        caption: "Biodata dan Informasi Akun",
+        action: "Perbarui Profile",
+        head: ["Data", "Informasi", "Status"],
+        rows: [
+          ["Nama", "Zahara Nanda Alvianti", "<span class='badge ok'>Aktif</span>"],
+          ["NIM", "10123325", "Terverifikasi"],
+          ["Program Studi", "Teknik Informatika-S1", "Aktif"],
+          ["Email", "10123325@mahasiswa.unikom.ac.id", "Aktif"]
+        ],
+        note: "Perubahan data tertentu tetap membutuhkan validasi akademik."
+      },
+
+      kurikulum: {
+        heading: "Wireframe Kurikulum",
+        desc: "Kurikulum dibuat lebih terstruktur berdasarkan semester dan status mata kuliah.",
+        title: "Kurikulum Program Studi",
+        caption: "Daftar Mata Kuliah",
+        action: "Pilih Kurikulum",
+        head: ["Semester", "Mata Kuliah", "SKS", "Status", "Aksi"],
+        rows: [
+          ["4", "Rekayasa Fitur", "3", "Wajib", "<button class='secondary-btn' onclick='openModal(\"Detail\", \"Mata kuliah wajib.\")'>Detail</button>"],
+          ["5", "Desain Interaksi Perangkat Lunak", "3", "Wajib", "<button class='secondary-btn' onclick='openModal(\"Detail\", \"Fokus UX, usability, accessibility, dan prototyping.\")'>Detail</button>"],
+          ["5", "Keamanan Big Data", "3", "Pilihan", "<button class='secondary-btn' onclick='openModal(\"Detail\", \"Mata kuliah pilihan.\")'>Detail</button>"]
+        ],
+        note: "Dropdown kurikulum lama diubah menjadi tabel terstruktur."
+      },
+
+      rencana: {
+        heading: "Wireframe Pengisian Rencana Studi",
+        desc: "Rencana studi dibuat lebih jelas dengan checkbox, prasyarat, dan status rekomendasi.",
+        title: "Pengisian Rencana Studi",
+        caption: "Daftar Rencana Mata Kuliah",
+        action: "Simpan Rencana Studi",
+        head: ["Pilih", "Mata Kuliah", "SKS", "Prasyarat", "Status"],
+        rows: [
+          ["<input type='checkbox' checked>", "DIPL", "3", "Terpenuhi", "<span class='badge ok'>Direkomendasikan</span>"],
+          ["<input type='checkbox' checked>", "Rekayasa Fitur", "3", "Terpenuhi", "<span class='badge ok'>Direkomendasikan</span>"],
+          ["<input type='checkbox'>", "Komputasi Awan", "3", "Terpenuhi", "<span class='badge warn'>Opsional</span>"]
+        ],
+        note: "Feedback sistem menunjukkan prasyarat, total SKS, dan status rekomendasi."
+      },
+
+      kelas: {
+        heading: "Wireframe Pengisian Kelas",
+        desc: "Pemilihan kelas menampilkan kuota dan status kelas secara jelas.",
+        title: "Pengisian Kelas",
+        caption: "Pilihan Kelas Tersedia",
+        action: "Kunci Pilihan Kelas",
+        head: ["Kelas", "Mata Kuliah", "Jadwal", "Kuota", "Status"],
+        rows: [
+          ["DIPL 2", "DIPL", "Rabu 10.00", "34/40", "<span class='badge ok'>Tersedia</span>"],
+          ["RF 1", "Rekayasa Fitur", "Senin 08.00", "39/40", "<span class='badge warn'>Hampir Penuh</span>"],
+          ["KBD 2", "Keamanan Big Data", "Jumat 13.00", "28/40", "<span class='badge ok'>Tersedia</span>"]
+        ],
+        note: "Loading state diberikan saat pengguna menyimpan pilihan kelas."
+      },
+
+      kehadiran: {
+        heading: "Wireframe Kehadiran Perkuliahan",
+        desc: "Presensi dibuat mudah dibaca dengan status warna dan label teks.",
+        title: "Kehadiran Perkuliahan",
+        caption: "Rekap Presensi",
+        action: "Ajukan Koreksi",
+        head: ["Mata Kuliah", "Hadir", "Izin/Sakit", "Tanpa Keterangan", "Persentase"],
+        rows: [
+          ["DIPL", "12", "1", "0", "<span class='badge ok'>92%</span>"],
+          ["Rekayasa Fitur", "11", "1", "0", "<span class='badge ok'>91%</span>"],
+          ["Keamanan Big Data", "10", "1", "1", "<span class='badge warn'>83%</span>"]
+        ],
+        note: "Warna dan teks digunakan bersamaan agar lebih aksesibel."
+      },
+
+      kuesioner: {
+        heading: "Wireframe Kuesioner",
+        desc: "Kuesioner yang sebelumnya hanya berupa pesan tertutup dibuat menjadi daftar status yang jelas.",
+        title: "Kuesioner Perkuliahan",
+        caption: "Status Pengisian Kuesioner",
+        action: "Isi Kuesioner",
+        head: ["Mata Kuliah", "Dosen", "Status", "Batas Waktu", "Aksi"],
+        rows: [
+          ["DIPL", "Alif Finandhita, M.T.", "<span class='badge warn'>Belum Diisi</span>", "31 Mei 2026", "<button class='secondary-btn' onclick='openModal(\"Kuesioner\", \"Membuka form kuesioner.\")'>Isi</button>"],
+          ["Rekayasa Fitur", "Dosen RF", "<span class='badge ok'>Sudah Diisi</span>", "31 Mei 2026", "<button class='secondary-btn' onclick='openModal(\"Kuesioner\", \"Kuesioner sudah selesai.\")'>Lihat</button>"]
+        ],
+        note: "Status kewajiban kuesioner dibuat lebih terlihat."
+      },
+
+      wisuda: {
+        heading: "Wireframe Syarat Wisuda",
+        desc: "Syarat wisuda dibuat dalam bentuk checklist agar mahasiswa tahu bagian yang belum lengkap.",
+        title: "Syarat Wisuda",
+        caption: "Checklist Kelayakan Wisuda",
+        action: "Cek Kelayakan",
+        head: ["Persyaratan", "Status", "Keterangan"],
+        rows: [
+          ["SKS Minimal", "<span class='badge ok'>Terpenuhi</span>", "SKS sudah memenuhi syarat."],
+          ["Tidak Ada Nilai E", "<span class='badge ok'>Terpenuhi</span>", "Tidak ditemukan nilai E."],
+          ["TA/Skripsi", "<span class='badge warn'>Belum Terdaftar</span>", "Perlu mendaftar TA/Skripsi."],
+          ["Administrasi", "<span class='badge warn'>Perlu Cek</span>", "Cek menu tagihan."]
+        ],
+        note: "Sistem tidak hanya menolak akses, tetapi memberi alasan dan arahan lanjutan."
+      },
+
+      aktivitas: {
+        heading: "Wireframe Aktivitas Kemahasiswaan",
+        desc: "Aktivitas mahasiswa dibuat menjadi tabel ringkas dengan status validasi.",
+        title: "Aktivitas Kemahasiswaan",
+        caption: "Daftar Aktivitas dan Poin",
+        action: "Tambah Aktivitas",
+        head: ["Nama Aktivitas", "Jenis", "Status Validasi", "Poin", "Aksi"],
+        rows: [
+          ["HMIF", "Organisasi", "<span class='badge ok'>Tervalidasi</span>", "20", "<button class='secondary-btn' onclick='openModal(\"Aktivitas\", \"Detail aktivitas organisasi.\")'>Detail</button>"],
+          ["Seminar UI/UX", "Seminar", "<span class='badge ok'>Tervalidasi</span>", "5", "<button class='secondary-btn' onclick='openModal(\"Aktivitas\", \"Detail seminar.\")'>Detail</button>"],
+          ["Lomba Desain Aplikasi", "Kompetisi", "<span class='badge warn'>Menunggu</span>", "15", "<button class='secondary-btn' onclick='openModal(\"Aktivitas\", \"Validasi masih diproses.\")'>Detail</button>"]
+        ],
+        note: "Informasi panjang dipadatkan agar lebih mudah dibaca."
+      }
+    };
+
+    function toggleSubmenu(id) {
+      document.getElementById(id).classList.toggle("show");
+    }
+
+    function openPage(page) {
+      currentPage = page;
+      const data = tableData[page] || tableData.dashboard;
+
+      document.querySelectorAll(".menu-btn").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById("btn-" + page);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      document.getElementById("page-heading").textContent = data.heading;
+      document.getElementById("page-desc").textContent = data.desc;
+      document.getElementById("section-title").textContent = data.title;
+      document.getElementById("table-caption").textContent = data.caption;
+      document.getElementById("main-action").textContent = data.action;
+
+      document.getElementById("table-head").innerHTML =
+        data.head.map(item => `<th>${item}</th>`).join("");
+
+      document.getElementById("table-body").innerHTML =
+        data.rows.map(row => `<tr>${row.map(col => `<td>${col}</td>`).join("")}</tr>`).join("");
+
+      document.getElementById("table-note").textContent = data.note;
+      document.getElementById("table-filter").value = "";
+      document.getElementById("search-result").style.display = "none";
+
+      showToast("Membuka wireframe: " + data.heading);
+    }
+
+    function filterTable() {
+      const keyword = document.getElementById("table-filter").value.toLowerCase();
+      document.querySelectorAll("#table-body tr").forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(keyword) ? "" : "none";
+      });
+    }
+
+    function handleSearch() {
+      const query = document.getElementById("search").value.trim().toLowerCase();
+      const box = document.getElementById("search-result");
+
+      if (!query) {
+        box.style.display = "none";
+        return;
+      }
+
+      const found = pages.filter(item =>
+        item[0].toLowerCase().includes(query) ||
+        item[1].toLowerCase().includes(query)
+      ).slice(0, 8);
+
+      box.innerHTML = found.length
+        ? found.map(item => `<button onclick="openPage('${item[0]}')">Cari: ${item[1]}</button>`).join("")
+        : `<button>Tidak ditemukan. Coba: KRS, jadwal, nilai, tagihan.</button>`;
+
+      box.style.display = "block";
+    }
+
+    function handleSearchEnter(event) {
+      if (event.key !== "Enter") return;
+
+      const query = document.getElementById("search").value.trim().toLowerCase();
+      const found = pages.find(item =>
+        item[0].toLowerCase().includes(query) ||
+        item[1].toLowerCase().includes(query)
+      );
+
+      if (found) {
+        openPage(found[0]);
+      } else {
+        openModal("Pencarian Tidak Ditemukan", "Gunakan kata kunci seperti KRS, jadwal, nilai, tagihan, kuesioner, atau wisuda.");
+      }
+    }
+
+    function processAction() {
+      if (["krs", "rencana", "kelas", "dashboard"].includes(currentPage)) {
+        showLoading("Memvalidasi data KRS...");
+        setTimeout(() => {
+          hideLoading();
+          document.getElementById("step-2").classList.remove("active");
+          document.getElementById("step-2").classList.add("done");
+          document.getElementById("step-3").classList.add("done");
+          document.getElementById("step-4").classList.add("active");
+
+          openModal(
+            "Aksi Berhasil",
+            "Data berhasil divalidasi dan disimpan. Sistem memberikan feedback agar pengguna tahu proses selesai."
+          );
+        }, 1000);
+      } else if (currentPage === "tagihan") {
+        openPaymentModal();
+      } else {
+        openModal("Aksi Simulasi", "Aksi utama pada wireframe ini berhasil dijalankan.");
+      }
+    }
+
+    function openPaymentModal() {
+      openModal(
+        "Gerbang Pembayaran",
+        "Wireframe modal pembayaran: pilih bank, buat Virtual Account, lalu sistem menampilkan instruksi pembayaran."
+      );
+    }
+
+    function matchSchedule() {
+      const nim = document.getElementById("friend-nim").value.trim();
+
+      if (!nim) {
+        openModal("NIM Belum Diisi", "Silakan masukkan NIM teman terlebih dahulu.");
+        return;
+      }
+
+      showLoading("Menganalisis waktu kosong bersama...");
+
+      setTimeout(() => {
+        hideLoading();
+        const box = document.getElementById("match-result");
+        box.innerHTML = `
+          <strong>Hasil Deteksi Jadwal:</strong><br>
+          Waktu luang bersama dengan NIM ${nim} ditemukan pada <strong>Kamis, 13.00 WIB</strong>.
+          Detail jadwal pribadi tetap disembunyikan.
+        `;
+        box.style.display = "block";
+      }, 1000);
+    }
+
+    function toggleOneSensitive(button) {
+      const value = button.closest(".privacy-card").querySelector(".sensitive");
+
+      if (value.textContent.includes("•")) {
+        value.textContent = value.dataset.value;
+        button.textContent = "Sembunyikan";
+      } else {
+        value.textContent = "•••••••";
+        button.textContent = "Lihat";
+      }
+    }
+
+    function toggleAllSensitive() {
+      document.querySelectorAll(".sensitive").forEach(item => {
+        item.textContent = item.textContent.includes("•") ? item.dataset.value : "•••••••";
+      });
+
+      showToast("Mode sensor data diperbarui.");
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.getAttribute("data-theme") === "dark";
+
+      if (isDark) {
+        document.body.removeAttribute("data-theme");
+        showToast("Mode terang aktif.");
+      } else {
+        document.body.setAttribute("data-theme", "dark");
+        showToast("Mode gelap aktif.");
+      }
+    }
+
+    function changeFont(action) {
+      if (action === "inc" && currentFont < 22) {
+        currentFont += 1;
+      }
+
+      if (action === "dec" && currentFont > 12) {
+        currentFont -= 1;
+      }
+
+      document.documentElement.style.setProperty("--font-size", currentFont + "px");
+      showToast("Ukuran font diperbarui.");
+    }
+
+    function toggleChat() {
+      document.getElementById("chat-panel").classList.toggle("open");
+    }
+
+    function sendChat() {
+      const input = document.getElementById("chat-input");
+      const body = document.getElementById("chat-body");
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      body.innerHTML += `<div class="msg user">${escapeHtml(text)}</div>`;
+      input.value = "";
+
+      setTimeout(() => {
+        body.innerHTML += `<div class="msg bot">${botReply(text)}</div>`;
+        body.scrollTop = body.scrollHeight;
+      }, 400);
+
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function botReply(text) {
+      const q = text.toLowerCase();
+
+      if (q.includes("krs")) {
+        return "Buka menu KRS & Perwalian. Sistem akan memandu melalui langkah pilih mata kuliah, validasi, konfirmasi, dan selesai.";
+      }
+
+      if (q.includes("jadwal")) {
+        return "Jadwal dapat dibuka melalui Informasi Akademik > Jadwal Kuliah. Gunakan filter tabel untuk mencari mata kuliah tertentu.";
+      }
+
+      if (q.includes("nilai") || q.includes("ipk")) {
+        return "Riwayat Nilai & IPK tersedia pada menu Informasi Akademik. Data dapat disensor untuk menjaga privasi.";
+      }
+
+      if (q.includes("tagihan") || q.includes("bayar")) {
+        return "Tagihan tersedia pada Layanan Keuangan. Wireframe ini menyediakan modal pembayaran dan simulasi Virtual Account.";
+      }
+
+      if (q.includes("kuesioner")) {
+        return "Menu kuesioner menampilkan status sudah atau belum diisi agar mahasiswa tidak melewatkan kewajiban evaluasi.";
+      }
+
+      if (q.includes("wisuda")) {
+        return "Syarat wisuda ditampilkan dalam bentuk checklist agar mahasiswa tahu persyaratan yang belum lengkap.";
+      }
+
+      return "Saya bisa membantu tentang KRS, jadwal, nilai, tagihan, kuesioner, wisuda, kehadiran, dan aktivitas mahasiswa.";
+    }
+
+    function openModal(title, desc) {
+      document.getElementById("modal-title").textContent = title;
+      document.getElementById("modal-desc").textContent = desc;
+      document.getElementById("modal-overlay").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal-overlay").style.display = "none";
+    }
+
+    function showLoading(text) {
+      document.getElementById("loading-text").textContent = text;
+      document.getElementById("loading-overlay").style.display = "flex";
+    }
+
+    function hideLoading() {
+      document.getElementById("loading-overlay").style.display = "none";
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeModal();
+        hideLoading();
+        document.getElementById("search-result").style.display = "none";
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".search-area")) {
+        document.getElementById("search-result").style.display = "none";
+      }
+    });
+
+    openPage("dashboard");
+  </script>
+</body>
+</html>
